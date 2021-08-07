@@ -2,7 +2,7 @@ use std::io;
 
 macro_rules! parse_input {
     ($x:expr, $t:ident) => {
-        $x.trim().parse::<$t>().unwrap()
+        $x.trim().parse::<$t>()
     };
 }
 
@@ -30,9 +30,12 @@ fn process_line(s: &String, lines: &mut Vec<char>) {
 fn main() {
     let mut input_line = String::new();
     io::stdin().read_line(&mut input_line).unwrap();
-    let inputs = input_line.split(" ").collect::<Vec<_>>();
-    let w = parse_input!(inputs[0], i32);
-    let h = parse_input!(inputs[1], i32);
+    let inputs: Vec<&str> = input_line.split(" ").collect::<Vec<_>>();
+    if inputs.len() <= 1 {
+        panic!("invalid 'Width'/'Height' specifications")
+    }
+    let w = parse_input!(inputs[0], i32).expect("width is not a valid i32");
+    let h = parse_input!(inputs[1], i32).expect("height is not a valid i32");
     // check constrains
     if ! w > 3 {
         panic!("width should be greater than 3");
