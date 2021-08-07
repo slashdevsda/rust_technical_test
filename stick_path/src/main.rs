@@ -2,7 +2,6 @@ use std::collections::BTreeMap;
 use std::io;
 
 
-
 macro_rules! parse_input {
     ($x:expr, $t:ident) => {
         $x.trim().parse::<$t>().unwrap()
@@ -10,10 +9,7 @@ macro_rules! parse_input {
 }
 
 fn process_line(s: &String, lines: &mut Vec<char>) {
-    // let lines: Vec<char> = h.keys().map(|_| 0).collect();
     let mut current_index = 0;
-    // let mut lines: Vec<&char> = h.iter().map(|(_, c): (&usize, &char)| c).collect();
-    //map(|(_, c) :(usize, char)| c).collect();
     println!("lines : {:?}", lines);
 
     let mut it = s.chars().peekable();
@@ -27,21 +23,11 @@ fn process_line(s: &String, lines: &mut Vec<char>) {
                 lines.swap(current_index, current_index + 1);
             }
         }
-        // if last_seen == '-'
-        // } else if stck == '-' {
-
-        // }
         if cc == '|' {
             current_index += 1;
         }
         last_seen = cc;
     }
-
-    // match h.get(&'A').unwrap() {
-    //     Position::Starting => (),
-    //     Position::Moving(x) => x
-    //     _ => ()
-    // }
 }
 
 fn main() {
@@ -55,7 +41,6 @@ fn main() {
     io::stdin().read_line(&mut input_line).unwrap();
 
     let line: String = input_line.trim_end().to_string();
-    //let keys: Vec<char> = line.chars().filter(|c: char| c.is_ascii_whitespace()).collect();
     let mut labels: Vec<char> = line
         .chars()
         .filter_map(|c: char| {
